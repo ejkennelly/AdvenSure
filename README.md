@@ -21,5 +21,4 @@ MONGODBURL = "mongodb+srv://DropG:rG3VgkGB1DwSkQS8@cluster0.otx7r.mongodb.net/Ad
 [EJ Kennelly](https://github.com/ejkennelly)
 [Halle Wehmeyer](https://github.com/hallewehmeyer)
 [Brandon Cermak](https://github.com/bcermak)
-
 # Technology Used
