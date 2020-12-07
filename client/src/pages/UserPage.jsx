@@ -50,11 +50,12 @@ const Example = (props) => {
     <div className="container">
       <div className="row">
         <div className="col-12 py-5">
-          <h1>Welcome {user}</h1>
+          <h1 class="text-center" >Welcome {user}</h1>
         </div>
       </div>
       <div className="row">
-        <div className="col-9">
+        <div className="col-3"></div>
+        <div className="col-6">
           <h3>Create New Trip</h3>
           <Form>
             <FormGroup>
@@ -82,7 +83,7 @@ const Example = (props) => {
             <Button onClick={userTripAdd}>Create Checklist</Button>
           </Form>
         </div>
-        <div className="col-3">
+        <div className="col-3 px-5">
           <Button className="btn btn-block btn-sm btn-light">
             <Link to="/weather">Destination Weather Condition</Link>
           </Button>
