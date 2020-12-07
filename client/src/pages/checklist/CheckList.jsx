@@ -12,6 +12,14 @@ import {
   DropdownToggle,
   DropdownMenu,
 } from "reactstrap";
+import Background from "../../assets/image/bluemonoped.jpeg"
+
+var sectionStyle = {
+  backgroundSize: "cover",
+  backgroundImage: "url(" + Background + ")",
+  width: '100vw',
+  height: '100vh',
+}
 
 export default function CheckList() {
   const [list, setList] = useState([]);
@@ -44,16 +52,16 @@ export default function CheckList() {
     setUserChecklist(JSON.parse(localStorage.getItem("userTripChecklist")));
     setNewUserChecklist(userChecklist);
     unpackedTrip = `${newUserChecklist}unpacked`;
-     localStorage.setItem(unpackedTrip, JSON.stringify(x));
+    localStorage.setItem(unpackedTrip, JSON.stringify(x));
   };
-  const packedTripFunc =  (x) => {
-      console.log(x);
+  const packedTripFunc = (x) => {
+    console.log(x);
     const arr = [...list];
     console.log(arr);
     setUserChecklist(JSON.parse(localStorage.getItem("userTripChecklist")));
     setNewUserChecklist(userChecklist);
     packedTrip = `${newUserChecklist}packed`;
-     localStorage.setItem(packedTrip, JSON.stringify(x));
+    localStorage.setItem(packedTrip, JSON.stringify(x));
   };
   const handleCheck = (e) => {
     let item = e.target.name;
@@ -279,192 +287,193 @@ export default function CheckList() {
   };
 
   return (
-    <Container style={{ marginBottom: "100px" }}>
-      <div className="container">
-        <div className="row">
-          <div className="col-12">
-            <Form >
-              <FormGroup>
-                <Input
-                  type="text"
-                  body
-                  inverse
-                  style={{ color: "black", opacity: ".6", borderRadius: "100px" }}
-                  name="checklist"
-                  id="examplechecklist"
-                  placeholder="Mix and match items from our curated lists, or add your own here"
-                  value={item}
-                  onChange={handleChange}
-                />
-                <Nav>
-                  <Button 
-                    onClick={handleClick}
-                    style={{
-                      fontSize: "20px",
-                      color: "white",
-                      borderRadius: "4px",
-                      marginTop: "15px",
-                      opacity: ".6",
-                      borderRadius: "80px",
-                      background: "linear-gradient(45deg, #d0ccba, #afac9d)",
-                      background: "linear-gradient(to top, #2193b0, #3a7bd5",
-                      marginTop: "20px",
-                      marginLeft: "10px",
-                      height: "50px",
-                      border: "none",
-                      boxShadow:  "-1px 0px 1px #6fadcb, 0px 1px 1px #54809d, -2px 1px 1px #6fadcb, -1px 2px 1px #54809d, -3px 2px 1px #6fadcb, -2px 3px 1px #54809d;",
-                    }}
-                  >
-                    Add Item
-                  </Button>​
-                  <Dropdown nav isOpen={dropdownOpen} toggle={toggle}>
-                    <DropdownToggle
-                      nav
-                      caret
-                      type="button"
-                      style={{
-                        background:
-                          "linear-gradient(to bottom, #ece9e6, #ffffff)",
-                        borderRadius: "200px",
-                        marginTop: "15px",
-                        marginLeft: "120px",
-                        opacity: ".6",
-                      }}
-                    >
-                      Pre-Curated Lists
-                    </DropdownToggle>
-                    <DropdownMenu
-                      style={{
-                        borderRadius: "10px",
-                        background:
-                          "linear-gradient(to bottom, #ece9e6, #ffffff)",
-                        opacity: ".9",
-                      }}
-                    >
-                      <DropdownItem onClick={addBasics}>
-                        Travel Basics
-                      </DropdownItem>
-                      <DropdownItem divider />
-                      <DropdownItem onClick={addTechnology}>
-                        Technology/Entertainment
-                      </DropdownItem>
-                      <DropdownItem divider />
-                      <DropdownItem onClick={addClothes}>Clothes</DropdownItem>
-                      <DropdownItem divider />
-                      <DropdownItem onClick={addHygiene}>Toiletry</DropdownItem>
-                      <DropdownItem divider />
-                      <DropdownItem onClick={addFeminine}>
-                        Feminine Travel Necesseties
-                      </DropdownItem>
-                      <DropdownItem divider />
-                      <DropdownItem onClick={addBusiness}>
-                        Business
-                      </DropdownItem>
-                      <DropdownItem divider />
-                      <DropdownItem onClick={addBeach}>
-                        Beach Essentials
-                      </DropdownItem>
-                      <DropdownItem divider />
-                      <DropdownItem onClick={addCold}>
-                        Cold Weather
-                      </DropdownItem>
-                      <DropdownItem divider />
-                    </DropdownMenu>
-                  </Dropdown>
-                </Nav>
-              </FormGroup>
-            </Form>
-          </div>
-        </div>
-      </div>
-      <Row
-        style={{
-          borderRadius: "6px",
-          background: "linear-gradient(to bottom, #ece9e6, #ffffff)",
-          opacity: ".7",
-          marginTop: "6px",
-        }}
-      >
+    <div style={sectionStyle}>
+      <Container style={{ marginBottom: "100px" }}>
         <div className="container">
           <div className="row">
-            <div className="col-sm-12 col-md-6">
-              <Table>
-                <thead>
-                  <tr>
-                    <th>Packed</th>
-                    <th>Items</th>
-                    <th>Delete</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {list.length > 0 ? (
-                    list.map((item) => {
-                      return (
-                        <tr>
-                          <td>
-                            <input
-                              type="checkbox"
-                              onClick={handleCheck}
-                              name={item}
-                              checked=""
-                            ></input>
-                          </td>
-                          <td>{item}</td>
-                          <td>
-                            <button onClick={deleteItem} name={item}>
-                              X
-                            </button>
-                          </td>
-                        </tr>
-                      );
-                    })
-                  ) : (
-                    <></>
-                  )}
-                </tbody>
-              </Table>
-            </div>
-            <div className="col-sm-12 col-md-6">
-              <Table>
-                <thead>
-                  <tr>
-                    <th>Unpacked</th>
-                    <th>Items</th>
-                    <th>Delete</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {checked.length > 0 ? (
-                    checked.map((item) => {
-                      return (
-                        <tr>
-                          <td>
-                            <input
-                              type="checkbox"
-                              onChange={handleChecked}
-                              name={item}
-                              checked=""
-                            ></input>
-                          </td>
-                          <td>{item}</td>
-                          <td>
-                            <button onClick={deleteItemChecked} name={item}>
-                              X
-                            </button>
-                          </td>
-                        </tr>
-                      );
-                    })
-                  ) : (
-                    <></>
-                  )}
-                </tbody>
-              </Table>
+            <div className="col-12">
+              <Form >
+                <FormGroup>
+                  <Input
+                    type="text"
+                    body
+                    inverse
+                    style={{ color: "black", opacity: ".6", borderRadius: "100px" }}
+                    name="checklist"
+                    id="examplechecklist"
+                    placeholder="Mix and match items from our curated lists, or add your own here"
+                    value={item}
+                    onChange={handleChange}
+                  />
+                  <Nav>
+                    <Button
+                      onClick={handleClick}
+                      style={{
+                        fontSize: "20px",
+                        color: "white",
+                        borderRadius: "4px",
+                        marginTop: "15px",
+                        opacity: ".6",
+                        borderRadius: "80px",
+                        background: "linear-gradient(45deg, #d0ccba, #afac9d)",
+                        background: "linear-gradient(to top, #2193b0, #3a7bd5",
+                        marginTop: "20px",
+                        marginLeft: "10px",
+                        height: "50px",
+                        border: "none",
+                        boxShadow: "-1px 0px 1px #6fadcb, 0px 1px 1px #54809d, -2px 1px 1px #6fadcb, -1px 2px 1px #54809d, -3px 2px 1px #6fadcb, -2px 3px 1px #54809d;",
+                      }}
+                    >
+                      Add Item
+                  </Button>
+                    <Dropdown nav isOpen={dropdownOpen} toggle={toggle}>
+                      <DropdownToggle
+                        nav
+                        caret
+                        type="button"
+                        style={{
+                          background:
+                            "linear-gradient(to bottom, #ece9e6, #ffffff)",
+                          borderRadius: "200px",
+                          marginTop: "15px",
+                          marginLeft: "120px",
+                          opacity: ".6",
+                        }}
+                      >
+                        Pre-Curated Lists
+                    </DropdownToggle>
+                      <DropdownMenu
+                        style={{
+                          borderRadius: "10px",
+                          background:
+                            "linear-gradient(to bottom, #ece9e6, #ffffff)",
+                          opacity: ".9",
+                        }}
+                      >
+                        <DropdownItem onClick={addBasics}>
+                          Travel Basics
+                      </DropdownItem>
+                        <DropdownItem divider />
+                        <DropdownItem onClick={addTechnology}>
+                          Technology/Entertainment
+                      </DropdownItem>
+                        <DropdownItem divider />
+                        <DropdownItem onClick={addClothes}>Clothes</DropdownItem>
+                        <DropdownItem divider />
+                        <DropdownItem onClick={addHygiene}>Toiletry</DropdownItem>
+                        <DropdownItem divider />
+                        <DropdownItem onClick={addFeminine}>
+                          Feminine Travel Necesseties
+                      </DropdownItem>
+                        <DropdownItem divider />
+                        <DropdownItem onClick={addBusiness}>
+                          Business
+                      </DropdownItem>
+                        <DropdownItem divider />
+                        <DropdownItem onClick={addBeach}>
+                          Beach Essentials
+                      </DropdownItem>
+                        <DropdownItem divider />
+                        <DropdownItem onClick={addCold}>
+                          Cold Weather
+                      </DropdownItem>
+                        <DropdownItem divider />
+                      </DropdownMenu>
+                    </Dropdown>
+                  </Nav>
+                </FormGroup>
+              </Form>
             </div>
           </div>
         </div>
+        <Row
+          style={{
+            borderRadius: "6px",
+            background: "linear-gradient(to bottom, #ece9e6, #ffffff)",
+            opacity: ".7",
+            marginTop: "6px",
+          }}
+        >
+          <div className="container">
+            <div className="row">
+              <div className="col-sm-12 col-md-6">
+                <Table>
+                  <thead>
+                    <tr>
+                      <th>Packed</th>
+                      <th>Items</th>
+                      <th>Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {list.length > 0 ? (
+                      list.map((item) => {
+                        return (
+                          <tr>
+                            <td>
+                              <input
+                                type="checkbox"
+                                onClick={handleCheck}
+                                name={item}
+                                checked=""
+                              ></input>
+                            </td>
+                            <td>{item}</td>
+                            <td>
+                              <button onClick={deleteItem} name={item}>
+                                X
+                            </button>
+                            </td>
+                          </tr>
+                        );
+                      })
+                    ) : (
+                        <></>
+                      )}
+                  </tbody>
+                </Table>
+              </div>
+              <div className="col-sm-12 col-md-6">
+                <Table>
+                  <thead>
+                    <tr>
+                      <th>Unpacked</th>
+                      <th>Items</th>
+                      <th>Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {checked.length > 0 ? (
+                      checked.map((item) => {
+                        return (
+                          <tr>
+                            <td>
+                              <input
+                                type="checkbox"
+                                onChange={handleChecked}
+                                name={item}
+                                checked=""
+                              ></input>
+                            </td>
+                            <td>{item}</td>
+                            <td>
+                              <button onClick={deleteItemChecked} name={item}>
+                                X
+                            </button>
+                            </td>
+                          </tr>
+                        );
+                      })
+                    ) : (
+                        <></>
+                      )}
+                  </tbody>
+                </Table>
+              </div>
+            </div>
+          </div>
 
-        {/* <Col>
+          {/* <Col>
                 <div><input type="checkbox"></input><label>Phone Charger</label></div>
                 <div><input type="checkbox"></input><label>Deoderant</label></div>
                 <div><input type="checkbox"></input><label>Underwear</label></div>
@@ -476,19 +485,20 @@ export default function CheckList() {
                 <div><input type="checkbox"></input><label>Jackets</label></div>
                 <div><input type="checkbox"></input><label>Swimsuits</label></div>
                 </Col> */}
-      </Row>
-      <Button
-        onClick={handleClick}
-        style={{
-          borderRadius: "4px",
-          background: "linear-gradient(to top, #2193b0, #3a7bd5",
-          marginTop: "15px",
-          opacity: ".6",
-        }}
-      >
-        Save Checklist
+        </Row>
+        <Button
+          onClick={handleClick}
+          style={{
+            borderRadius: "4px",
+            background: "linear-gradient(to top, #2193b0, #3a7bd5",
+            marginTop: "15px",
+            opacity: ".6",
+          }}
+        >
+          Save Checklist
       </Button>
-    </Container>
+      </Container>
+    </div>
   );
 }
 

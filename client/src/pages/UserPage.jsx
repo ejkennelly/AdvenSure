@@ -9,11 +9,26 @@ import {
   useParams,
 } from "react-router-dom";
 import axios from 'axios';
+import Background from "../assets/image/blueped.jpeg"
+
+var sectionStyle = {
+  backgroundSize: "cover",
+  backgroundImage: "url(" + Background + ")",
+  width: '100vw',
+  height: '100vh',
+}
 
 const Example = (props) => {
   const[user, setUser] = useState();
   const[userTrip, setUserTrip] = useState();
   const[list, setList] = useState([]);
+
+  var sectionStyle = {
+    backgroundSize: "cover",
+    backgroundImage: "url(" + Background + ")",
+    width: '100vw',
+    height: '100vh',
+  }
 
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem('user')));
@@ -47,6 +62,7 @@ const Example = (props) => {
 
   const {name} = useParams();
   return (
+    <body style={sectionStyle}>
     <div className="container">
       <div className="row">
         <div className="col-12 py-5">
@@ -125,6 +141,7 @@ const Example = (props) => {
         </div>
       </div>
     </div>
+    </body>
   );
 };
 
